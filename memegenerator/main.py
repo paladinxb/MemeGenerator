@@ -1,38 +1,33 @@
-from PIL import Image, ImageDraw, ImageFont
-import random
 import os
-image_paths = ('C:/Users/79842/memegenerator/memes')
+import random
+from random import randint
+from PIL import Image, ImageDraw, ImageFont
 
-# List of random words
-words = ['lol', 'rofl', 'lmao', 'haha', "BIG L", "BIG W"]
-
-# Select a random image
-image_path = random.choice(image_paths)
-
-# Load the image
-image = Image.open('meme1.jpg')
-
-# Get the image size
-width, height = image.size
-
-# Create a drawing context
-draw = ImageDraw.Draw(image)
-
-# Select a random font and font size
 font = ImageFont.truetype('arial.ttf', random.randint(40, 100))
 
-# Select a random word
-word = random.choice(words)
+image_dir = ('C:/Users/79842/memegenerator/memes')
 
-# Get the size of the text
-text_width, text_height = draw.textlength(word, font)
+image_files = os.listdir(image_dir)
 
-# Calculate the position of the text
-x = random.randint(0, width - text_width)
-y = random.randint(0, height - text_height)
+image_file = random.choice(image_files)
 
-# Draw the text on the image
-draw.text((x, y), word, font=font)
+image = Image.open(os.path.join(image_dir, image_file))
 
-# Save the meme
-image.save('meme1.jpg')
+width, height = image.size
+
+draw = ImageDraw.Draw(image)
+
+words = ["BIG W", "BIG L", "LOL", "ROFL"]
+
+sentence = random.choice(words)
+
+
+#text_width, text_height = draw.textlength(words, font)
+#x = (width - text_width) / 2
+#y = height - text_height - 50
+x = randint(200, 600)
+y = randint(200, 700)
+
+draw.text((x, y), sentence, fill=1280128, font=font)
+
+image.save('meme.png')
