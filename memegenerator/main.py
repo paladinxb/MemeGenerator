@@ -3,7 +3,7 @@ import random
 from random import randint
 from PIL import Image, ImageDraw, ImageFont
 
-font = ImageFont.truetype('arial.ttf', random.randint(40, 100))
+font = ImageFont.truetype('arial.ttf', random.randint(90, 100))
 
 image_dir = ('C:/Users/79842/memegenerator/memes')
 image_files = os.listdir(image_dir)
@@ -17,9 +17,12 @@ def create_meme():
     width = image.width
     draw = ImageDraw.Draw(image)
     sentence = random.choice(words)
-    x = randint(300, 350)
-    y = randint(300, 350)
-    draw.text((x, y), sentence, fill=1280128, font=font)
+    x = randint(350, 500)
+    y = randint(300, 500)
+    #text_width, text_height = draw.textlength(words, font)
+    #x = random.randint(0, width - text_width)
+    #y = random.randint(0, height - text_height)
+    draw.text((x, y), sentence, fill="purple", font=font)
     return image
 
 while True: 
